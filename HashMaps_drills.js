@@ -1,16 +1,17 @@
 'use strict';
 
 const { HashMap } = require('./HashMap');
+const { HashMap_SepChain } = require('./HashMap_SepChain');
 
 HashMap.MAX_LOAD_RATIO = 0.5;
 HashMap.SIZE_RATIO = 3;
 
 function main() {
     const lor = new HashMap();
-    const data = [{'Hobbit': 'Bilbo'}, {'Hobbit': 'Frodo'},
-    {'Wizard': 'Gandolf'}, {'Human': 'Aragon'}, {'Elf': 'Legolas'}, {'Maiar': 'The Necromancer'},
-    {'Maiar': 'Sauron'}, {'RingBearer': 'Gollum'}, {'LadyOfLight': 'Galadriel'}, {'HalfElven': 'Arwen'},
-    {'Ent': 'Treebeard'}];
+    const data = [{ 'Hobbit': 'Bilbo' }, { 'Hobbit': 'Frodo' },
+    { 'Wizard': 'Gandolf' }, { 'Human': 'Aragon' }, { 'Elf': 'Legolas' }, { 'Maiar': 'The Necromancer' },
+    { 'Maiar': 'Sauron' }, { 'RingBearer': 'Gollum' }, { 'LadyOfLight': 'Galadriel' }, { 'HalfElven': 'Arwen' },
+    { 'Ent': 'Treebeard' }];
     data.forEach(obj => {
         const key = Object.keys(obj)[0];
         lor.set(key, obj[key])
@@ -32,19 +33,21 @@ function main() {
     // Once the load capacity reached 4 items, the initial capacity was multipled by the SIZE_RATIO of 3.
 }
 
+main();
+
 // ============== WhatDoesThisDo? =========================
 // TODO: What is the output of the following code? explain your answer.
-const WhatDoesThisDo = function() {
+const WhatDoesThisDo = function () {
     let str1 = 'Hello World.';
     let str2 = 'Hello World.';
     let map1 = new HashMap();
-    map1.set(str1,10);
-    map1.set(str2,20);
+    map1.set(str1, 10);
+    map1.set(str2, 20);
     let map2 = new HashMap();
     let str3 = str1;
     let str4 = str2;
-    map2.set(str3,20);
-    map2.set(str4,10);
+    map2.set(str3, 20);
+    map2.set(str4, 10);
 
     console.log('map1 =', map1.get(str1)); // returns 20
     console.log('map2 =', map2.get(str3)); // returns 10
@@ -84,6 +87,69 @@ function removeDuplicates(string) {
 console.log(removeDuplicates('google')); // gole
 console.log(removeDuplicates('google all that you think can think of')); // gole athyuinkcf 
 
+// ================ Any permutation a palindrome =======================
+// TODO: Write an algorithm to check whether any permutation of a string is a palindrome. Given the string "acecarr", the algorithm should return true, because the letters in "acecarr" can be rearranged to "racecar", which is a palindrome. In contrast, given the word "north", the algorithm should return false, because there's no way to rearrange those letters to be a palindrome.
+
+// input: 'acecarr'
+// output: true
+
+function palindrome(string) {
+    const result = new Map();
+    for (let i = 0; i < string.length; i++) {
+        console.log(result);
+        if (!result.delete(string[i])) {
+            result.set(string[i], 1);
+        }
+    }
+    console.log(result.size, result);
+    if (result.size <= 1) {
+        return true;
+    } return false;
+}
+
+console.log(palindrome('acecarr')) // true;
+console.log(palindrome('north')) // false;
 
 
-main();
+// ============== Anagram grouping =======================
+// TODO: Write an algorithm to group a list of words into anagrams. For example, if the input was ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'], the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
+
+// input = ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']
+// output = [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
+
+// function anagrams(input) {
+//     let map = new HashMap();
+//     input.forEach(word => {
+//         map.set(word, '');
+//     });
+//     let result = [];
+//     map._hashTable.forEach(arr => result.push(arr.map(obj => obj.key)));
+//     return result;
+// }
+
+// console.log(anagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+
+// ============= Separate Chaining =======================
+// TODO: Write another hash map implementation as above, but use separate chaining as the collision resolution mechanism.
+// TODO: Test your hash map with the same values from the lor hash map.
+
+HashMap_SepChain.MAX_LOAD_RATIO = 0.5;
+HashMap_SepChain.SIZE_RATIO = 3;
+
+function sepMain() {
+    const lor = new HashMap_SepChain;
+    const data = [{ 'Hobbit': 'Bilbo' }, { 'Hobbit': 'Frodo' },
+    { 'Wizard': 'Gandolf' }, { 'Human': 'Aragon' }, { 'Elf': 'Legolas' }, { 'Maiar': 'The Necromancer' },
+    { 'Maiar': 'Sauron' }, { 'RingBearer': 'Gollum' }, { 'LadyOfLight': 'Galadriel' }, { 'HalfElven': 'Arwen' },
+    { 'Ent': 'Treebeard' }];
+    data.forEach(obj => {
+        const key = Object.keys(obj)[0];
+        lor.set(key, obj[key]);
+    });
+    console.log(lor);
+}
+
+sepMain();
+
+
+
