@@ -22,7 +22,7 @@ function main() {
     { Ent: "Treebeard" }
   ];
   data.forEach(obj => {
-    const key = Object.keys(obj)[0];
+    const key = Object.keys(obj)[0]; // remember: Object.keys returns an array.
     lor.set(key, obj[key]);
   });
 
@@ -50,22 +50,29 @@ const WhatDoesThisDo = function() {
   let str1 = "Hello World.";
   let str2 = "Hello World.";
   let map1 = new HashMap();
-  map1.set(str1, 10);
-  map1.set(str2, 20);
-  let map2 = new HashMap();
-  // assigning "Hello World" to each
-  let str3 = str1;
-  let str4 = str2;
+  map1.set(str1, 10); // Hello world: 10
+  map1.set(str2, 20); // Hello world: 20
+  console.log("map1: ", map1);
 
-  console.log("str4: ", str3);
+  let map2 = new HashMap();
+
+  // assigning "Hello World" to each
+  let str3 = str1; // 10
+  console.log("str3: ", str3);
+  let str4 = str2; // 20
+  console.log("str4: ", str4);
+
   map2.set(str3, 20);
-  map2.set(str4, 10);
+  map2.set(str4, 10); // same key, prints second value; 10 is after 20, unlike above where 10 is above 20
+  console.log("map2: ", map2);
 
   console.log("map1[str1] =", map1.get(str1)); // returns 20 --> Because collision, and so only displays latter value
   console.log("map1[str2] =", map1.get(str2)); // returns 20 --> Same as above. This is the value that was actually set fpr map1's collions.
   console.log("map2[str3] =", map2.get(str3)); // returns 10 --> Because str4, which is a duplicate causing collision, is the latter value, and thus gets displayed.
   console.log("map2[str4] =", map2.get(str4)); // returns 10
 };
+
+// same key (hello world), prints second value
 
 // WhatDoesThisDo();
 // this function is creating a collision, therefore duplicate keys will overwrite previous data values
@@ -94,7 +101,7 @@ drill1.set(17);
 drill1.set(88);
 drill1.set(59);
 
-// console.log(drill1);
+console.log("drill1 Length: ", drill1.length);
 
 const drill2 = new HashMap_SepChain();
 
@@ -108,7 +115,7 @@ drill2.set(12);
 drill2.set(17);
 drill2.set(10);
 
-// console.log(drill2);
+// console.log("drill2: ", drill2);
 
 // ================ Remove Duplicates ============================
 // TODO: Implement a function to delete all duplicated characters in a string and keep only the first occurrence of each character. For example, if the input is string “google”, the result after deletion is “gole”. Test your program with a sentence as well such as "google all that you think can think of".
@@ -213,7 +220,7 @@ function anagram(array) {
   return Array.from(obj);
 }
 
-console.log(anagram(["east", "cars", "acre", "arcs", "teas", "eats", "race"]));
+// console.log(anagram(["east", "cars", "acre", "arcs", "teas", "eats", "race"]));
 
 // ============= Separate Chaining =======================
 // TODO: Write another hash map implementation as above, but use separate chaining as the collision resolution mechanism.
