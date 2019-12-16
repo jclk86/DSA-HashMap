@@ -2,7 +2,7 @@
 
 class HashMap_SepChain {
   constructor(initialCapacity = 8) {
-    this.length = 0;
+    this.length = 9;
     this._hashTable = [];
     this._capacity = initialCapacity;
   }
@@ -105,3 +105,20 @@ module.exports = { HashMap_SepChain };
 
 // for linked list or closed address, the index is a pointer to the first node of a linked list. Use linked list traversal once you use the get() method of the hashMap()
 // Separate chaining is used for large number of data.
+
+// 2) Show your hash map after the insertion of the keys 5, 28, 19, 15, 20, 33, 12, 17, 10
+// into the hash map with collisions resolved by separate chaining.Let the hash table have a length m = 9, and let the hash function be k mod m.
+
+const HashMapSep = new HashMap_SepChain();
+
+HashMapSep.set("5", 5);
+HashMapSep.set("28", 28);
+HashMapSep.set("19", 19);
+HashMapSep.set("15", 15);
+HashMapSep.set("20", 20);
+HashMapSep.set("33", 33);
+HashMapSep.set("12", 12);
+HashMapSep.set("17", 17);
+HashMapSep.set("10", 10);
+
+console.log(HashMapSep);

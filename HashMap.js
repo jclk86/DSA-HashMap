@@ -1,5 +1,5 @@
 "use strict";
-
+const { HashMap_SepChain } = require("./HashMap_SepChain");
 /* 
 - Hash maps = unordered associations between keys and values. (similar to objs)
 - Hashmaps = data structure that uses the concept of hashing.
@@ -167,9 +167,6 @@ module.exports = { HashMap };
 // 1) Show your hash map after the insertion of keys 10, 22, 31, 4, 15, 28, 17, 88, 59 into a hash map of length 11 using open addressing and a hash function k mod m,
 // where k is the key and m is the length.
 
-// 2) Show your hash map after the insertion of the keys 5, 28, 19, 15, 20, 33, 12, 17, 10 into the hash map with collisions resolved by separate chaining.
-// Let the hash table have a length m = 9, and let the hash function be k mod m.
-
 const HashMapOpen = new HashMap(); // 11 length
 
 HashMapOpen.set("10", 10);
@@ -183,3 +180,7 @@ HashMapOpen.set("88", 88);
 HashMapOpen.set("59", 59);
 
 console.log(HashMapOpen);
+
+// 4. Remove duplicates
+// Implement a function to delete all duplicated characters in a string and keep only the first occurrence of each character.
+// For example, if the input is string “google”, the result after deletion is “gole”.Test your program with a sentence as well such as "google all that you think can think of".

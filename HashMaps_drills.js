@@ -21,8 +21,9 @@ function main() {
     { HalfElven: "Arwen" },
     { Ent: "Treebeard" }
   ];
+  // each object in array
   data.forEach(obj => {
-    const key = Object.keys(obj)[0]; // remember: Object.keys returns an array.
+    const key = Object.keys(obj)[0]; // remember: Object.keys returns an array. This array as 1 object w/ key value pair.
     lor.set(key, obj[key]);
   });
 
@@ -101,7 +102,7 @@ drill1.set(17);
 drill1.set(88);
 drill1.set(59);
 
-console.log("drill1 Length: ", drill1.length);
+// console.log("drill1 Length: ", drill1.length);
 
 const drill2 = new HashMap_SepChain();
 
@@ -124,7 +125,8 @@ function removeDuplicates(string) {
   const map = new Map();
   let newStr = "";
   string.split("").forEach(letter => {
-    // does the map object hold the letter? No, then set it. Map ends up with GOLE and helps the logic along. newString returns the string only. map returns whole object.
+    // does the map object hold the letter? No, then set it. Map ends up with GOLE and helps the logic along.
+    // newString returns the string only. map returns whole object.
     if (!map.has(letter)) {
       map.set(letter, "");
       newStr += letter;
@@ -163,22 +165,28 @@ function removeDuplicates(string) {
 // console.log(palindrome("acecarr")); // true;
 // console.log(palindrome("north")); // false;
 
+// in a palindrome, there are duplicate letters. Only 1 letter is not a duplicate. This checks for that.
+// so this saves everything once, and all should only equal 1. If it's more , than that means there were 3 letters of
 function palindrome(str) {
   const palHash = new HashMap();
   let total = 0;
   for (let i = 0; i < str.length; i++) {
     let character = str[i];
+    console.log("character: ", character);
     try {
       let value = palHash.get(character); // fails here and goes down below
+      console.log("value: ", value);
       value++;
       palHash.set(character, value);
     } catch (error) {
       palHash.set(character, 1);
     }
   }
-
+  console.log(palHash);
   for (let i = 0; i < str.length; i++) {
     let check = palHash.get(str[i]);
+    console.log("check: ", check);
+    // there should be 1 character that only is 1 letter.
     if (check === 1) {
       total++;
     }
@@ -189,8 +197,12 @@ function palindrome(str) {
   }
   return true;
 }
-
-// console.log(palindrome("acecarr"));
+// https://leetcode.com/articles/palindrome-permutation/
+// r: 1
+// a: 1
+// c: 1
+// e: 1
+console.log("palindrome: ", palindrome("pooop"));
 
 //If the length of the string is even, then each character of the string must have a pair
 //If the length of the string is odd, then at most one character can not have a pair
@@ -220,7 +232,7 @@ function anagram(array) {
   return Array.from(obj);
 }
 
-// console.log(anagram(["east", "cars", "acre", "arcs", "teas", "eats", "race"]));
+console.log(anagram(["east", "cars", "acre", "arcs", "teas", "eats", "race"]));
 
 // ============= Separate Chaining =======================
 // TODO: Write another hash map implementation as above, but use separate chaining as the collision resolution mechanism.
